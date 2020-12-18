@@ -107,7 +107,12 @@
                     <p>Manage Permission</p>
                   </a>
                 </li>
-                
+                <li class="nav-item">
+                  <a href="{{route('roleIndex')}}" class="nav-link active">
+                    <i class="fa fa-bars"></i>
+                    <p>Manage Roles</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <li class="nav-item">

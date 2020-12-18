@@ -36,6 +36,10 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:administrator']], fun
     Route::get('manage/permission/create', 'AdminController@permissionCreate')->name('permissionCreate');
     Route::post('manage/permission/store', 'AdminController@permissionStore')->name('permissionStore');
 
+    Route::get('manager/role/index', 'AdminController@roleIndex')->name('roleIndex');
+    Route::get('manage/role/create', 'AdminController@roleCreate')->name('roleCreate');
+    Route::post('manage/role/store', 'AdminController@roleStore')->name('roleStore');
+
     Route::get('blog', '\Modules\Blog\Http\Controllers\BlogController@index')->name('index');
 
  //   Route::get('app/Modules/blog', 'blogController');

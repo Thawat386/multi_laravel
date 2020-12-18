@@ -156,11 +156,40 @@ class AdminController extends Controller
 
     // }
 
-    public function destroy($id)
-    {
-        contact::find($id)->delete();
-        return redirect('/contact');
+    public function roleIndex(){
+        $roles = Role::orderBy('id', 'desc')->paginate(10);
+
+        return view('admin.manage.role.index', compact('roles'));
     }
+
+    public function roleCreate(){
+        $permissions = Permission::all();
+
+        return view('admin.manage.role.create', compact('permissions'));
+    }
+
+    public function roleStore(Request $request){
+        $this->validate($request, [
+            'display_name'      => 'required|max:255',
+            'name'              => 'required|max:255|alphadash|unique:permissions,name',
+            'description'       => 'sometimes|max:255'
+        ]);
+
+        $role = new Role;
+        $role->display_name         = $request->display_name;
+        $role->name                 = $request->name;
+        $role->description          = $request->description;
+        $role->save();
+
+        if($request->permissions){
+            $role->syncPermissions(explode(',', $request->permissions));
+        }
+
+        return redirect()->route('roleIndex');
+
+    }
+
+
 }
 
 
