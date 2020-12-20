@@ -31,14 +31,25 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:administrator']], fun
     Route::get('manage/user/show/{id}', 'AdminController@userShow')->name('userShow');
     Route::get('manage/user/edit/{id}', 'AdminController@userEdit')->name('userEdit');
     Route::post('manage/user/update/{id}', 'AdminController@userUpdate')->name('userUpdate');
+    Route::get('manage/user/destroy/{id}', 'AdminController@userDestroy')->name('userDestroy');
 
     Route::get('manage/permission/index', 'AdminController@permissionIndex')->name('permissionIndex');
     Route::get('manage/permission/create', 'AdminController@permissionCreate')->name('permissionCreate');
     Route::post('manage/permission/store', 'AdminController@permissionStore')->name('permissionStore');
+    Route::get('manage/permission/show/{id}', 'AdminController@permissionShow')->name('permissionShow');
+    Route::get('manage/permission/edit/{id}', 'AdminController@permissionEdit')->name('permissionEdit');
+    Route::post('manage/permission/update/{id}', 'AdminController@permissionUpdate')->name('permissionUpdate');
+
 
     Route::get('manager/role/index', 'AdminController@roleIndex')->name('roleIndex');
     Route::get('manage/role/create', 'AdminController@roleCreate')->name('roleCreate');
     Route::post('manage/role/store', 'AdminController@roleStore')->name('roleStore');
+    Route::get('manage/role/show/{id}', 'AdminController@roleShow')->name('roleShow');
+    Route::get('manage/role/edit/{id}', 'AdminController@roleEdit')->name('roleEdit');
+    Route::post('manage/role/update/{id}', 'AdminController@roleUpdate')->name('roleUpdate');
+
+
+
 
     Route::get('blog', '\Modules\Blog\Http\Controllers\BlogController@index')->name('index');
 

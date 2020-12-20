@@ -9,7 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Swal from 'sweetalert2'
-winsow.Swal = Swal;
+window.Swal = Swal;
 
 /**
  * The following block of code may be used to automatically register your
@@ -23,7 +23,6 @@ winsow.Swal = Swal;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('user-delete', require('./components/UserDelete.vue').default);
 
 
 /**

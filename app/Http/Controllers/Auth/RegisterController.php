@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::UserDashboard;
 
     /**
      * Create a new controller instance.
@@ -80,8 +80,13 @@ class RegisterController extends Controller
         ]);
         $user->assignRole($role);
 
-        return $user ;
-        return redirect()->route('directorDashboard');
+        return $user;
+
+        if($user->hasRole('employee')){
+
+            return redirect()->route('userDashboard');
+        }
     }
+    
 }
 

@@ -30,14 +30,17 @@
                                     <td>{{ $permission->name }}</td>
                                     <td>{{ $permission->description}}</td>
                                     <td>
-                                        <a href="" class=" btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
-                                        <a href="" class=" btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                        <a href="" class=" btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('permissionShow', $permission->id) }}" class=" btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
+                                        <a href="{{ route('permissionEdit', $permission->id) }}" class=" btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <!-- <a href="" class=" btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row-justify-content-center">
+                        {!! $permissions->links('pagination::bootstrap-4') !!}
+                    </div>
                 </div>
             </div>
         </div>

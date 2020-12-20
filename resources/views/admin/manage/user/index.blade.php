@@ -32,7 +32,11 @@
                             <td>
                                 <a href="{{ route('userShow', $user->id)}}" class=" btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
                                 <a href="{{ route('userEdit', $user->id)}}" class=" btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <user-delete></user-delete>
+                                <a href="{{ route('userDestroy', $user->id) }}" class=" btn btn-danger btn-sm" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')">
+                                    @csrf @method('DELETE')
+                                    <!-- <input type="submit" value='ลบ' class=" btn btn-danger btn-sm" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')"> -->
+                                    <i class="fa fa-trash"></i></a>
+                                <!-- <a @click="userDelete" class=" btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
                             </td>
                         </tr>
                         @endforeach
@@ -46,36 +50,3 @@
     </div>
 </div>
 @endsection
-
-@section('scripts')
-    <script>
-    var app = new Vue({
-       el: '#app',
-       props: ['userId'],
-        data: {},
-        methods: {
-            userDelete(){
-                alert(this.userId);
-                // Swal.fire({
-                //     title: 'Are you sure?',
-                //     text: "You won't be able to revert this!",
-                //     icon: 'warning',
-                //     showCancelButton: true,
-                //     confirmButtonColor: '#3085d6',
-                //     cancelButtonColor: '#d33',
-                //     confirmButtonText: 'Yes, delete it!'
-                //     }).then((result) => {
-                //     if (result.isConfirmed) {
-                //         Swal.fire(
-                //         'Deleted!',
-                //         'Your file has been deleted.',
-                //         'success'
-                //     )
-                // }
-                // })
-            }
-        }
-    });
-    </script>
-@endsection
-

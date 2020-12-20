@@ -17,7 +17,6 @@
                             <tr>
                                 <th>#</th>
                                 <th>ชื่อ</th>
-                                <th>อีเมล</th>
                                 <th>Created At</th>
                                 <th>Actions</th>
                             </tr>
@@ -27,12 +26,11 @@
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
                                     <td>{{ $role->name }}</td>
-                                    <td>{{ $role->email }}</td>
                                     <td>{{ $role->created_at}}</td>
                                     <td>
-                                        <a href="" class=" btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
-                                        <a href="" class=" btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                        <a href="" class=" btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('roleShow', $role->id) }}" class=" btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
+                                        <a href="{{ route('roleEdit', $role->id) }}" class=" btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <!-- <a href="" class=" btn btn-danger btn-sm"><i class="fa fa-trash"></i></a> -->
                                     </td>
                                 </tr>
                             @endforeach
