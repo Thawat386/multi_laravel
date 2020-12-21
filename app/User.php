@@ -7,7 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use LaratrustUserTrait;
@@ -48,4 +48,5 @@ public function assignRole(Role $role)
 {
     return $this->roles()->save($role);
 }
+
 }
