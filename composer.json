@@ -18,7 +18,8 @@
         "laravel/ui": "2.4",
         "nwidart/laravel-modules": "^8.2",
         "realrashid/sweet-alert": "^3.2",
-        "santigarcor/laratrust": "5.2.*"
+        "santigarcor/laratrust": "5.2.*",
+        "spatie/laravel-activitylog": "^3.16"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

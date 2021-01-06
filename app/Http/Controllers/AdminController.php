@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use Hash;
 use App\Permission;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -57,7 +58,7 @@ class AdminController extends Controller
         $user->save();
         $user->syncRoles(explode(',', $request->roles));
 
-        return redirect()->route('userIndex')->with('success', 'Task Created Successfully!');;
+        return redirect()->route('userIndex')->with('success', 'เพิ่มผู้ใช้งานใหม่แล้ว');
     }
 
     public function userShow($id)
@@ -104,6 +105,22 @@ class AdminController extends Controller
 
     public function userDestroy($id)
     {
+        
+       // User::find($id)->delete();
+        Alert::warning('Deleting user <br/>are you sure?')
+        ->showCancelButton($btnText = 'Cancel', $btnColor = '#dc3545')
+        ->showConfirmButton(
+            $btnText = '<a class="add-padding" href="/multi/admin/manage/user/killdestroy/'. $id .'">Yes</a>', // here is class for link
+            $btnColor = '#38c177',
+            ['className'  => 'no-padding'], // add class to button
+        )->autoClose(false);
+            
+        return redirect()->route('userIndex');
+    }
+
+    public function userkillDestroy($id)
+    {
+        
         User::find($id)->delete();
 
         return redirect()->route('userIndex');

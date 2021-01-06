@@ -6,11 +6,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use LaratrustUserTrait;
+    use LogsActivity;
+
+    protected static $recordEvents = ['created', 'updated', 'deleted'];
 
     /**
      * The attributes that are mass assignable.

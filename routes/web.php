@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Activitylog\Models\Activity;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    
+
+    //return Activity::all();
     return view('welcome');
 });
 
 Auth::routes(['verify' => true]);
-
+  
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin/', 'middleware' => ['role:administrator']], function(){
@@ -32,6 +34,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:administrator']], fun
     Route::get('manage/user/edit/{id}', 'AdminController@userEdit')->name('userEdit');
     Route::post('manage/user/update/{id}', 'AdminController@userUpdate')->name('userUpdate');
     Route::get('manage/user/destroy/{id}', 'AdminController@userDestroy')->name('userDestroy');
+    Route::get('manage/user/killdestroy/{id}', 'AdminController@userkillDestroy')->name('userkillDestroy');
 
     Route::get('manage/permission/index', 'AdminController@permissionIndex')->name('permissionIndex');
     Route::get('manage/permission/create', 'AdminController@permissionCreate')->name('permissionCreate');
@@ -47,9 +50,6 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['role:administrator']], fun
     Route::get('manage/role/show/{id}', 'AdminController@roleShow')->name('roleShow');
     Route::get('manage/role/edit/{id}', 'AdminController@roleEdit')->name('roleEdit');
     Route::post('manage/role/update/{id}', 'AdminController@roleUpdate')->name('roleUpdate');
-
-
-
 
     Route::get('blog', '\Modules\Blog\Http\Controllers\BlogController@index')->name('index');
 

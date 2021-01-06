@@ -32,7 +32,7 @@
                             <td>
                                 <a href="{{ route('userShow', $user->id)}}" class=" btn btn-secondary btn-sm"><i class="fa fa-info"></i></a>
                                 <a href="{{ route('userEdit', $user->id)}}" class=" btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                <a href="{{ route('userDestroy', $user->id) }}" class=" btn btn-danger btn-sm" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')">
+                                <a href="{{ route('userDestroy', $user->id) }}" class=" btn btn-danger btn-sm" data-id="{{$user->id}}">
                                     @csrf @method('DELETE')
                                     <!-- <input type="submit" value='ลบ' class=" btn btn-danger btn-sm" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่')"> -->
                                     <i class="fa fa-trash"></i></a>
@@ -49,4 +49,30 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).on('click', '.button', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    swal({
+            title: "Are you sure!",
+            type: "error",
+            confirmButtonClass: "btn-danger",
+            confirmButtonText: "Yes!",
+            showCancelButton: true,
+        },
+        function() {
+            $.ajax({
+                type: "POST",
+                url: "{{url('/destroy')}}",
+                data: {id:id},
+                success: function (data) {
+                              //
+                    }         
+            });
+    });
+});
+    </script>
 @endsection

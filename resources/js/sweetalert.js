@@ -6,6 +6,7 @@ $(document).ready(function(){
         swal({
             title:'คุณต้องการลบข้อมูลหรือไม่',
             icon:"warning",
+            content:
             buttons:true,
             dangerMode:true
         }).then((willDelete)=>{
